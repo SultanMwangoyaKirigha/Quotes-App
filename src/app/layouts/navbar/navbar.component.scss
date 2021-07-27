@@ -1,0 +1,18 @@
+header {
+  height: 100px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  margin-bottom: 50px;
+  -webkit-box-shadow: 0 0 30px -10px rgba(119,119,34,0.3);
+  -moz-box-shadow: 0 0 30px -10px rgba(119,119,34,0.3);
+}
+
+.btn-brand {
+  background-color: #f3f6ff;
+  color: #007bff;
+  padding: 10px 50px;
+  border-radius: 50px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  font-weight: 600;
+}

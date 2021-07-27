@@ -1,0 +1,137 @@
+<div class="container quotes-page">
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-4 text-center">
+      <h1 class="main-title">Wise Quotes</h1>
+      <p class="text-info">
+        Learn and get wise like a scholar
+      </p>
+    </div>
+  </div>
+
+
+  <div class="row mb-5">
+
+    <!-- FORM SIDE -->
+    <div class="col-md-6">
+
+      <h2 class="sec-title">Add a Quote</h2>
+
+      <form>
+
+        <div class="mb-3">
+          <label for="name" class="form-label">Name </label>
+          <input type="text" class="form-control" autocomplete="off" [(ngModel)]="quote.author" [ngModelOptions]="{standalone: true}" id="exampleFormControlInamenput1" placeholder="John Doe">
+        </div>
+
+        <div class="mb-3">
+          <label for="title" class="form-label">Quote title </label>
+          <input type="Text" class="form-control" autocomplete="off" id="title" [(ngModel)]="quote.title" [ngModelOptions]="{standalone: true}">
+        </div>
+
+        <div class="mb-3">
+          <label for="quote" class="form-label">Quote </label>
+          <textarea class="form-control" autocomplete="off" id="quote" rows="3" placeholder="quote" [(ngModel)]="quote.quote" [ngModelOptions]="{standalone: true}"></textarea>
+        </div>
+
+        <div class="mb-5">
+          <label for="author" class="form-label">Author's Name </label>
+          <input type="Text" class="form-control" autocomplete="off" id="author" [(ngModel)]="quote.owner" [ngModelOptions]="{standalone: true}">
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary mb-3" (click)="createQuote()">Submit Quote</button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- IMAGE SIDE -->
+
+    <div class="col-md-6 text-center">
+      <img src="./assets/albert.jpg" class="landing-image">
+    </div>
+  </div>
+
+
+  <!-- QUOTES LIST SECTION -->
+
+  <div class="row">
+    <div class="col-md-12" *ngFor="let quote of quoteList;index as i">
+      <div class="card">
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-md-6">
+
+              <div class="badge badge-primary">Quote Card</div>
+
+            </div>
+            <div class="col-md-6">
+
+              <div class="cat-tools">
+                <span class="icon d-inline text-center">
+                  <i (click)="likeQuote(i)" class="fa fa-thumbs-up" title="like"></i>
+                  <span class="number">{{quote.likes }}</span>
+                </span>
+
+                <span class="icon d-inline text-center">
+                  <i (click)="dislikeQuote(i)" class="fa fa-thumbs-down" title="dislike"></i>
+                  <span class="number">{{ quote.dislikes }}</span>
+                </span>
+
+                <span class="icon" title="Delete quote" (click)="openModal(quote,i)"><i data-toggle="modal" data-target="#staticBackdrop" class="fa fa-trash text-danger" aria-hidden="true"></i></span>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="quote-content">
+            <h3>{{quote.title}}</h3>
+            <small class="text-secondary">{{quote.quote}} </small>
+            <h6 class="mt-2">by {{quote.author}}, {{quote.date | date :'MMM d,y'}}</h6>
+          </div>
+
+          <span class="badge badge-danger">{{quote.owner}}</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade delete-modal" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Confirm delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p> Are you sure you want to delete this quote about <strong>{{selectedQuote?.title}}</strong> , by <strong>{{selectedQuote?.author}}</strong> ?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="deleteQuote()" data-dismiss="modal">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  myClickFunction()
+  var result = confirm("Are you sure you want to delete this card?? ")
+
+  function hide() {
+    document.getElementsByClass("quote-list").style.display = "none";
+  }
+</script>
